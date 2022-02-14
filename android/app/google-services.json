@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "769247006697",
+    "project_id": "lasylab-e77f4",
+    "storage_bucket": "lasylab-e77f4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:769247006697:android:c99cc644f07707a0414578",
+        "android_client_info": {
+          "package_name": "com.example.lasylab_mobile_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "769247006697-ihui6d2thhip2qo6b4a6rl4lbu9vvd60.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.lasylab_mobile_app",
+            "certificate_hash": "67f01c7c34125c39e0580bf595bf9b772140d567"
+          }
+        },
+        {
+          "client_id": "769247006697-praqs6veft9kl5ljrdpoiks7gfapmtla.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.lasylab_mobile_app",
+            "certificate_hash": "0e46d32044e8f9504f0d4b642f296d713ebb62a1"
+          }
+        },
+        {
+          "client_id": "769247006697-9hrlqelj2uv7c46a887hr1kmimpsguo5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDt3Uber1jfUZbsbU97zNR4SM7A74HmjP0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "769247006697-9hrlqelj2uv7c46a887hr1kmimpsguo5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
