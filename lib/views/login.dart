@@ -53,11 +53,11 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, "/menu");
-                    },
-                    child: Text("test")),
+                // TextButton(
+                //     onPressed: () {
+                //       Navigator.pushNamed(context, "/menu");
+                //     },
+                //     child: Text("test")),
                 SizedBox(
                   height: screenSize.height * 0.88,
                   child: Padding(
@@ -179,7 +179,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                                           icon: Icon(
                                             Icons.remove_red_eye,
                                             color: passwordObscure
-                                                ? Colors.yellow
+                                                ? Colors.grey
                                                 : Colors.green,
                                           ),
                                           onPressed: () {
