@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:lasylab_mobile_app/components/fancy_button.dart';
+import 'package:lasylab_mobile_app/views/menu.dart';
 
 class FeesFormula extends StatefulWidget {
   const FeesFormula({Key? key}) : super(key: key);
@@ -239,10 +240,10 @@ class _FeesFormulaState extends State<FeesFormula> {
                 size: 18,
                 color: HexColor("#58CC02"),
                 onPressed: () {
-                  Navigator.of(context).pushNamed("/menu");
-                  Future.delayed(Duration(seconds: 2), () {
-                    showWelcome();
-                  });
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => Menu(),
+                  ));
+                  //
                 },
                 duration: const Duration(milliseconds: 160),
               ),
@@ -421,40 +422,5 @@ class _FeesFormulaState extends State<FeesFormula> {
         );
       },
     );
-  }
-
-  showWelcome() {
-    return showDialog(
-        context: context,
-        builder: (context) {
-          Future.delayed(Duration(seconds: 2), () {
-            Navigator.of(context).pop(true);
-          });
-          return AlertDialog(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0)),
-            contentPadding: EdgeInsets.zero,
-            title: Text(
-              "Votre réussite, notre priorité",
-              textAlign: TextAlign.left,
-            ),
-            content: Container(
-              height: 250,
-              child: Column(
-                children: [
-                  Image.asset(
-                    "assets/images/welcome.png",
-                    height: 250,
-                    fit: BoxFit.cover,
-                  ),
-                  // Container(
-                  //   height: 20,
-                  //   child: Text("Votre réussite, notre priorité"),
-                  // ),
-                ],
-              ),
-            ),
-          );
-        });
   }
 }

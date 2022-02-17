@@ -23,7 +23,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
   late TextEditingController telephone;
   late TextEditingController password;
   final formGlobalKey = GlobalKey<FormState>();
-  bool firstime = true;
+  //bool firstime = true;
   bool isloading = false;
   bool passwordObscure = false;
   AnimationController? animationcontroller;
@@ -291,26 +291,11 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                                                         password.text &&
                                                     user.telephone ==
                                                         telephone.text) {
-                                                  if (firstime) {
-                                                    setState(() {
-                                                      firstime = false;
-                                                    });
-                                                    Navigator.of(context)
-                                                        .pushNamedAndRemoveUntil(
-                                                      "/account_choice",
-                                                      (route) => false,
-                                                    );
-                                                  } else {
-                                                    Navigator.of(context)
-                                                        .pushNamedAndRemoveUntil(
-                                                      "/menu",
-                                                      (route) => false,
-                                                    );
-                                                  }
-                                                  setState(() {
-                                                    firstime = false;
-                                                  });
-                                                  print(firstime);
+                                                  Navigator.of(context)
+                                                      .pushNamedAndRemoveUntil(
+                                                    "/menu",
+                                                    (route) => false,
+                                                  );
                                                   Fluttertoast.showToast(
                                                       msg:
                                                           "Connecté avec succès",

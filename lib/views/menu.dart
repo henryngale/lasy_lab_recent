@@ -2,21 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:lasylab_mobile_app/components/custom_navbar.dart';
 import 'package:lasylab_mobile_app/views/activities.dart';
-//import 'package:lasylab_mobile_app/views/chat_background.dart';
 import 'package:lasylab_mobile_app/views/chat_page.dart';
 import 'package:lasylab_mobile_app/views/home.dart';
 import 'package:lasylab_mobile_app/views/research_page.dart';
-
+import '../components/welcome.dart';
 import 'chat_background.dart';
 
 class Menu extends StatefulWidget {
-  const Menu({Key? key}) : super(key: key);
-
+  const Menu({
+    Key? key,
+    /*required this.showedDialog*/
+  }) : super(key: key);
+  //final bool showedDialog;
   @override
   _MenuState createState() => _MenuState();
 }
 
-class _MenuState extends State<Menu> {
+class _MenuState extends State<Menu> with WidgetsBindingObserver {
   // final List screens = [
   //   HomePage(),
   //   ActivitiesPage(),
@@ -24,14 +26,37 @@ class _MenuState extends State<Menu> {
   //   ResearchPage(),
   // ];
 
-  bool seen = false;
   int selectedIndex = 0;
   late PageController pageController;
-  bool firstime = true;
+  bool firstime = true; //pour le first page dialog
+  bool firstimeOpen = true; // pour le welcome dialog
   @override
   void initState() {
     super.initState();
     pageController = PageController(initialPage: selectedIndex);
+    WidgetsBinding.instance?.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance?.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+
+    final isbackground = state == AppLifecycleState.inactive;
+
+    if (isbackground) {
+      print("background state");
+      Future.delayed(Duration(seconds: 10), () {
+        setState(() {
+          firstimeOpen = true;
+        });
+      });
+    }
   }
 
   @override
@@ -40,16 +65,22 @@ class _MenuState extends State<Menu> {
       backgroundColor: Colors.white,
       body:
           //screens[selectedIndex],
-          PageView(
-        physics: NeverScrollableScrollPhysics(),
-        controller: pageController,
-        children: [
-          HomePage(),
-          ActivitiesPage(),
-          (firstime == true) ? ChatBackground() : ChatPage(),
-          ResearchPage(),
-        ],
-      ),
+          FutureBuilder(
+              future: Future.delayed(Duration(seconds: 1), () {
+                choice();
+              }),
+              builder: (context, snapshot) {
+                return PageView(
+                  physics: NeverScrollableScrollPhysics(),
+                  controller: pageController,
+                  children: [
+                    HomePage(),
+                    ActivitiesPage(),
+                    (firstime == true) ? ChatBackground() : ChatPage(),
+                    ResearchPage(),
+                  ],
+                );
+              }),
       bottomNavigationBar: CustomLineIndicatorBottomNavbar1(
         selectedColor: HexColor("#58CC02"),
         unSelectedColor: HexColor("#AFAFAF"),
@@ -65,12 +96,20 @@ class _MenuState extends State<Menu> {
             curve: Curves.easeOutQuad,
           );
           if (index == 2) {
-            Future.delayed(Duration(seconds: 3), () {
+            Future.delayed(Duration(seconds: 2), () {
               setState(() {
                 firstime = false;
               });
             });
           }
+          // if (index == 0) {
+          //   if (firstimeOpen == true) {
+          //     Welcome().showWelcome(context);
+          //     setState(() {
+          //       firstimeOpen = false;
+          //     });
+          //   }
+          // }
           print(firstime);
         },
         enableLineIndicator: true,
@@ -137,5 +176,14 @@ class _MenuState extends State<Menu> {
       //   iconSize: 30,
       // ),
     );
+  }
+
+  void choice() {
+    if (firstimeOpen == true) {
+      Welcome().showWelcome(context);
+      setState(() {
+        firstimeOpen = false;
+      });
+    } else {}
   }
 }

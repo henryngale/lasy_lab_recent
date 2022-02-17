@@ -49,7 +49,7 @@ class _TeacherTileState extends State<TeacherTile> {
       "assets/images/girl_Memojis.png",
       "La photosythese est un\n phenomene",
       false,
-      color: Color.fromARGB(255, 21, 176, 223),
+      color: Color.fromARGB(255, 5, 83, 250),
     ),
     Teacher(
       "Prof ARNOLD",
@@ -77,12 +77,16 @@ class _TeacherTileState extends State<TeacherTile> {
                 return GestureDetector(
                   onTap: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => TeacherChat(
-                                name: teachers[index].name,
-                                appbarcolor: palete[index],
-                                subject: teachers[index].subject)));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => TeacherChat(
+                          name: teachers[index].name,
+                          appbarcolor: palete[index],
+                          subject: teachers[index].subject,
+                          image: teachers[index].image,
+                        ),
+                      ),
+                    );
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),

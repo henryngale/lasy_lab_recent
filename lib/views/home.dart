@@ -17,6 +17,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  bool firstTime = true;
   int _value = 1;
 
   void showOptiondialog() {
@@ -106,6 +107,11 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
     return SafeArea(
@@ -170,161 +176,159 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-        body: Center(
-          child: ListView(
-            padding: EdgeInsets.all(20),
-            children: [
-              Center(
-                child: DropdownButton(
-                  underline: SizedBox(),
-                  onChanged: (value) {},
-                  value: _value,
-                  items: [
-                    DropdownMenuItem(
-                      child: Text(
-                        "Seconde",
-                        style: GoogleFonts.openSans(
-                          color: Colors.black,
-                          textStyle: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
+        body: ListView(
+          padding: EdgeInsets.all(20),
+          children: [
+            Center(
+              child: DropdownButton(
+                underline: SizedBox(),
+                onChanged: (value) {},
+                value: _value,
+                items: [
+                  DropdownMenuItem(
+                    child: Text(
+                      "Seconde",
+                      style: GoogleFonts.openSans(
+                        color: Colors.black,
+                        textStyle: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                      value: 1,
                     ),
-                    DropdownMenuItem(
-                      child: Text(
-                        "Première",
-                        style: GoogleFonts.openSans(
-                          color: Colors.black,
-                          textStyle: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
+                    value: 1,
+                  ),
+                  DropdownMenuItem(
+                    child: Text(
+                      "Première",
+                      style: GoogleFonts.openSans(
+                        color: Colors.black,
+                        textStyle: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                      value: 2,
                     ),
-                    DropdownMenuItem(
-                      child: Text(
-                        "Terminale",
-                        style: GoogleFonts.openSans(
-                          color: Colors.black,
-                          textStyle: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
+                    value: 2,
+                  ),
+                  DropdownMenuItem(
+                    child: Text(
+                      "Terminale",
+                      style: GoogleFonts.openSans(
+                        color: Colors.black,
+                        textStyle: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                      value: 3,
-                    )
-                  ],
-                ),
-              ),
-              Center(
-                child: Container(
-                  margin: EdgeInsets.symmetric(vertical: 20),
-                  width: screenSize.width * 0.7,
-                  height: 10,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10),
                     ),
-                    child: LinearProgressIndicator(
-                      value: 0.2,
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        HexColor("#FFD900"),
-                      ),
-                      backgroundColor: HexColor("#E1E1E1"),
-                    ),
-                  ),
-                ),
-              ),
-              GridView.count(
-                shrinkWrap: true,
-                primary: false,
-                padding: const EdgeInsets.all(20),
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-                crossAxisCount: 2,
-                children: <Widget>[
-                  GestureDetector(
-                    onTap: () {
-                      showOptiondialog();
-                      //Navigator.of(context).pushNamed("/revisions");
-                    },
-                    child: CourseItem(
-                      courseName: "Mathématiques",
-                      backgroundColor: HexColor("#1CB1FB"),
-                      image: "assets/images/maths_icon.png",
-                      progression: 0.7,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      showOptiondialog();
-                      //Navigator.of(context).pushNamed("/revisions");
-                    },
-                    child: CourseItem(
-                      courseName: "Français",
-                      backgroundColor: HexColor("#1CB1FB"),
-                      image: "assets/images/Book.png",
-                      progression: 0.1,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      showOptiondialog();
-                      //Navigator.of(context).pushNamed("/revisions");
-                    },
-                    child: CourseItem(
-                      courseName: "SVT",
-                      backgroundColor: HexColor("#1CB1FB"),
-                      image: "assets/images/Bocal.png",
-                      progression: 0.4,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      showOptiondialog();
-                      //Navigator.of(context).pushNamed("/revisions");
-                    },
-                    child: CourseItem(
-                      courseName: "Philosophie",
-                      backgroundColor: HexColor("#1CB1FB"),
-                      image: "assets/images/Edit.png",
-                      progression: 0.0,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      showOptiondialog();
-                      //Navigator.of(context).pushNamed("/revisions");
-                    },
-                    child: CourseItem(
-                      courseName: "Informatique",
-                      backgroundColor: HexColor("#1CB1FB"),
-                      image: "assets/images/computer.png",
-                      progression: 0.3,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      showOptiondialog();
-                      //Navigator.of(context).pushNamed("/revisions");
-                    },
-                    child: CourseItem(
-                      courseName: "Anglais",
-                      backgroundColor: HexColor("#1CB1FB"),
-                      image: "assets/images/English.png",
-                      progression: 0.2,
-                    ),
-                  ),
+                    value: 3,
+                  )
                 ],
               ),
-            ],
-          ),
+            ),
+            Center(
+              child: Container(
+                margin: EdgeInsets.symmetric(vertical: 20),
+                width: screenSize.width * 0.7,
+                height: 10,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                  child: LinearProgressIndicator(
+                    value: 0.2,
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      HexColor("#FFD900"),
+                    ),
+                    backgroundColor: HexColor("#E1E1E1"),
+                  ),
+                ),
+              ),
+            ),
+            GridView.count(
+              shrinkWrap: true,
+              primary: false,
+              padding: const EdgeInsets.all(20),
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+              crossAxisCount: 2,
+              children: <Widget>[
+                GestureDetector(
+                  onTap: () {
+                    showOptiondialog();
+                    //Navigator.of(context).pushNamed("/revisions");
+                  },
+                  child: CourseItem(
+                    courseName: "Mathématiques",
+                    backgroundColor: HexColor("#1CB1FB"),
+                    image: "assets/images/maths_icon.png",
+                    progression: 0.7,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    showOptiondialog();
+                    //Navigator.of(context).pushNamed("/revisions");
+                  },
+                  child: CourseItem(
+                    courseName: "Français",
+                    backgroundColor: HexColor("#1CB1FB"),
+                    image: "assets/images/Book.png",
+                    progression: 0.1,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    showOptiondialog();
+                    //Navigator.of(context).pushNamed("/revisions");
+                  },
+                  child: CourseItem(
+                    courseName: "SVT",
+                    backgroundColor: HexColor("#1CB1FB"),
+                    image: "assets/images/Bocal.png",
+                    progression: 0.4,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    showOptiondialog();
+                    //Navigator.of(context).pushNamed("/revisions");
+                  },
+                  child: CourseItem(
+                    courseName: "Philosophie",
+                    backgroundColor: HexColor("#1CB1FB"),
+                    image: "assets/images/Edit.png",
+                    progression: 0.0,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    showOptiondialog();
+                    //Navigator.of(context).pushNamed("/revisions");
+                  },
+                  child: CourseItem(
+                    courseName: "Informatique",
+                    backgroundColor: HexColor("#1CB1FB"),
+                    image: "assets/images/computer.png",
+                    progression: 0.3,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    showOptiondialog();
+                    //Navigator.of(context).pushNamed("/revisions");
+                  },
+                  child: CourseItem(
+                    courseName: "Anglais",
+                    backgroundColor: HexColor("#1CB1FB"),
+                    image: "assets/images/English.png",
+                    progression: 0.2,
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
@@ -344,62 +348,5 @@ class _HomePageState extends State<HomePage> {
         );
       },
     );
-  }
-
-  showWelcome() {
-    return showDialog(
-        context: context,
-        builder: (context) {
-          Future.delayed(Duration(seconds: 2), () {
-            Navigator.of(context).pop(true);
-          });
-          return AlertDialog(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0)),
-            contentPadding: EdgeInsets.zero,
-            title: Text(
-              "Votre réussite, notre priorité",
-              textAlign: TextAlign.left,
-            ),
-            content: Container(
-              height: 250,
-              child: Column(
-                children: [
-                  Image.asset(
-                    "assets/images/welcome.png",
-                    height: 250,
-                    fit: BoxFit.cover,
-                  ),
-                  // Container(
-                  //   height: 20,
-                  //   child: Text("Votre réussite, notre priorité"),
-                  // ),
-                ],
-              ),
-            ),
-            actions: [
-              TextButton(
-                onPressed: () {},
-                child: Text(
-                  "Rate Us",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text(
-                  "Fermer",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ],
-          );
-        });
   }
 }

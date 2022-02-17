@@ -79,7 +79,7 @@ class _ProfilPageState extends State<ProfilPage> {
               ),
               Center(
                 child: Text(
-                  "${user!.nom} ${user!.prenom} ",
+                  "${user!.nom} ${user!.prenom}",
                   maxLines: 1,
                   style: GoogleFonts.openSans(
                     textStyle: TextStyle(
